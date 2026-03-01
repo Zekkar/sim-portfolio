@@ -13,9 +13,12 @@ services:
     networks:
       - infra-network
       - shioaji-network
+      - ibapi-trading_default
 
 networks:
   infra-network:
     external: true
   shioaji-network:
+    external: true
+  ibapi-trading_default:
     external: true
