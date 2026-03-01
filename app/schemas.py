@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from datetime import datetime
 from typing import Optional
 from decimal import Decimal
@@ -10,6 +10,7 @@ class UserCreate(BaseModel):
 
 
 class UserResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
     id: int
     nickname: str
     created_at: datetime
@@ -17,6 +18,7 @@ class UserResponse(BaseModel):
 
 # --- Contract Fees ---
 class ContractFeeResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
     contract_type: str
     fee_per_lot: Decimal
     tax_rate: Decimal
@@ -35,6 +37,7 @@ class ContractFeeUpdate(BaseModel):
 
 # --- Position Legs ---
 class LegResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
     id: int
     long_lots: int
     short_lots: int
@@ -112,6 +115,7 @@ class CloseAllRequest(BaseModel):
 
 
 class PositionResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
     id: int
     user_id: int
     long_symbol: str
@@ -129,6 +133,7 @@ class PositionResponse(BaseModel):
 
 # --- Trade Logs ---
 class TradeLogResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
     id: int
     user_id: int
     position_id: int

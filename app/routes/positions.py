@@ -181,8 +181,11 @@ async def close_all_legs(position_id: int, req: CloseAllRequest, db: AsyncSessio
         leg.status = "closed"
         leg.closed_at = now
 
-    pos.status = "closed"
-    pos.closed_at = now
+    # 檢查是否所有 open legs 都已被關閉
+    remaining_open = [l for l in pos.legs if l.status == "open"]
+    if not remaining_open:
+        pos.status = "closed"
+        pos.closed_at = now
 
     log = TradeLog(
         user_id=pos.user_id,
