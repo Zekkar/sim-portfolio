@@ -6,6 +6,7 @@ from app.db import engine, Base, async_session
 from app.models import ContractFee
 from app.routes.users import router as users_router
 from app.routes.fees import router as fees_router
+from app.routes.positions import router as positions_router
 import app.models  # noqa: F401
 
 @asynccontextmanager
@@ -41,6 +42,7 @@ app.add_middleware(
 
 app.include_router(users_router)
 app.include_router(fees_router)
+app.include_router(positions_router)
 
 @app.get("/api/sim/health")
 async def health():
