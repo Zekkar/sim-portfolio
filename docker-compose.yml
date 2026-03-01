@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  sim-portfolio:
+    build: .
+    container_name: sim-portfolio
+    environment:
+      - TZ=Asia/Taipei
+      - DATABASE_URL=${DATABASE_URL}
+    ports:
+      - "8897:8897"
+    restart: unless-stopped
+    networks:
+      - infra-network
+      - shioaji-network
+
+networks:
+  infra-network:
+    external: true
+  shioaji-network:
+    external: true
