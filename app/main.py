@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from app.db import engine, Base
+import app.models  # noqa: F401
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
