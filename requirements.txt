@@ -8,3 +8,14 @@ python-dotenv==1.0.1
 pytest==8.3.0
 pytest-asyncio==0.24.0
 httpx==0.27.0
+
+# OpenTelemetry（STANDARDS.md §3.2）
+opentelemetry-api>=1.25.0
+opentelemetry-sdk>=1.25.0
+opentelemetry-exporter-otlp-proto-grpc>=1.25.0
+opentelemetry-instrumentation-fastapi>=0.46b0
+opentelemetry-instrumentation-httpx>=0.46b0
+opentelemetry-instrumentation-asyncpg>=0.46b0
+
+# Structured logging（STANDARDS.md §3.1）
+structlog>=23.0

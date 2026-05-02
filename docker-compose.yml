@@ -7,9 +7,20 @@ services:
     environment:
       - TZ=Asia/Taipei
       - DATABASE_URL=${DATABASE_URL}
+      # ─── 可觀測性（STANDARDS.md §3.5）────────────────────────
+      - OTEL_TRACING_ENABLED=true
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://tempo:4317
+      - LOG_LEVEL=INFO
+      - ENVIRONMENT=production
     ports:
       - "8897:8897"
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8897/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
     networks:
       - infra-network
       - shioaji-network
